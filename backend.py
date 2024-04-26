@@ -41,7 +41,23 @@ class Chatbot():
             return response.choices[0].message.content
         except openai.RateLimitError as e:
             # Handle RateLimitError if API request exceeds quota
+            print("\n--- Rate limit exceeded. ---\n")
+            print("Error:", str(e))
+            print("\n--- Please try again later or consider upgrading your plan to increase your API quota. ---\n")
             return "\n--- Rate limit exceeded. Please try again later or upgrade your plan. ---\n"
+        except openai.OpenAIError as e:
+            # Handle other OpenAI related errors
+            print("\n--- An error occurred while communicating with OpenAI. ---\n")
+            print("Error:", str(e))
+            print("\n--- Please check your input and try again. ---\n")
+            return "\n--- An error occurred while communicating with OpenAI. Please check your input and try again. ---\n"
+        except Exception as e:
+            # Handle any other unforeseen errors
+            print("\n--- An unexpected error occurred. ---\n")
+            print("Error:", str(e))
+            print("\n--- Please contact support for assistance. ---\n")
+            return "\n--- An unexpected error occurred. Please contact support for assistance. ---\n"
+
 
 
 if __name__ == '__main__':
