@@ -1,12 +1,13 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLineEdit, QTextEdit, QPushButton
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QIcon
 from backend import Chatbot
 from threading import Thread
+from constants import LOGO_FILE
 
 
-class ChatbotMainWindow(QMainWindow):
-    """Main window class for the GPT Chatbot application."""
+class IntelliByteMainWindow(QMainWindow):
+    """Main window class for the IntelliByte application."""
 
     def __init__(self):
         """Initialize the main window."""
@@ -14,7 +15,9 @@ class ChatbotMainWindow(QMainWindow):
 
         self.chatbot = Chatbot()
 
-        self.setWindowTitle("GPT Chatbot")  # Setting the window title
+        self.setWindowTitle("IntelliByte")  # Setting the window title
+        # Set the window icon
+        self.setWindowIcon(QIcon(str(LOGO_FILE)))
         # Setting the fixed size for the window
         self.setFixedSize(605, 490)
         # Create a Qfont object to be used in the window
@@ -75,6 +78,6 @@ class ChatbotMainWindow(QMainWindow):
         # Get the bot's response using the chatbot object
         response = self.chatbot.get_response(user_input)
 
-        # Append the bot's response to the chat area with the "Bot" label
+        # Append the bot's response to the chat area with the "Byte" label
         # style='color: #333333; background-color:E9E9E9'
-        self.chat_area.append(f"<p><strong>. Bot</strong>: {response}</p>")
+        self.chat_area.append(f"<p><strong>. Byte</strong>: {response}</p>")
